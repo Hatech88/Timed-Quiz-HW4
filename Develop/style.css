@@ -1,0 +1,14 @@
+* {
+    background-color:azure;
+
+}
+
+
+
+#timer {
+    background-color:aliceblue;
+    margin: 0%;
+    display: inline-flex;
+    justify-content: center;
+
+}
