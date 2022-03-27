@@ -65,6 +65,7 @@ var questions = [
 ]  
 
 
+
 // start Quiz variable 
 var startQuizBtnEl = document.getElementById("startQuizBtn");
 
@@ -72,6 +73,7 @@ var startQuizBtnEl = document.getElementById("startQuizBtn");
 
 // Timer variables 
 var timeLeft = 100;
+var startScore = 0;
 var timer = document.getElementById("timer");
 
 
@@ -80,22 +82,23 @@ var timer = document.getElementById("timer");
 // starting the quiz function
 function startQuiz() {
 
-var timerInterval = setInterval(function() {
+    var timeInterval = setInterval(function() {
     timer.textContent = "Timer:" + timeLeft + "s";
     timeLeft-=1;
 
 
     // If condtion 
-    if(timeLeft === 0 || question.length === runningQuestionIndex + 1 ) {
-        resultRender;
-        clearInterval(timerInterval);
+    if(timeLeft === 0 || questions.length === currentQuestion + 1 ) {
+        resRender();
+        clearInterval(timeInterval);
         timer.textContent = "Time:" + timeLeft + "s";
+        
     }
 }, 1000);
 
 
 // this function we created below and we call it within this one
-render();
+    render();
 };
 
 
@@ -122,26 +125,26 @@ function render() {
 var score = 100;
 
 // function to check the answers with if condition
-function checkAnswer (answer) {
+function checkAnswer(answer) {
     
     // correct vs wrong messages
-    if (hello.correct == answer) {
-        checkAnswer.textContent = "Correct!"
+    if (questions[currentQuestion].correct == answer) {
+        answerCheck.textContent = "Correct!"
     }
     else {
-        checkAnswer.textContent = "Wrong!"
+        answerCheck.textContent = "Wrong!"
         score -=10;
     }
 
     // In this if condition we say if user gone through all questions, display final score, resRender function
-    if (questions.length === currentQuestion +1) {
+    if (questions.length === currentQuestion+1) {
         resRender();
         return;
     }
      else {
-    currentQuestion++
+    currentQuestion++;
         render();
-     }
+     };
 };
 
 
