@@ -1,79 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>Timed Quiz</title>
-</head>
-<body>
+  </head>
+
+  <body background="/Assets/background img.jpg">
     <div class="app">
+      <header>
+        <!-- div with timer and high score link -->
+        <div id="header">
+          <a id="score" href="highcore.html"> View High Score</a>
+          <h2 id="timer">Timer:</h2>
+        </div>
+      </header>
 
-        <header> 
-            <!-- div with timer and high score link -->
-            <div id="header">   
-                <a id="score" href="highcore.html"> View High Score</a>
-               <h2 id="timer">Timer: </h2>
-           </div>
-        </header>
+      <main class="container">
+        <!-- Section has has two div -->
+        <section>
 
-
-        
-
-        <main class="container">
-            <!-- Quiz beginning in this section: it one div for question and another for choices buttons and a div for the answers check -->
-            <section id="quiz">
-                <div id="question">Question goes here</div>
-
-                <!-- this div is for the choices buttons: create un ordered list for choices-->
-                <div id="choices">
-                    <ul>
-                        <!-- each list has a type, three classes, id, and onclick jQuery element -->
-                        <li><button type="button" class="" id="" onclick=""></button></li>
-                        <li><button type="button" class="" id="" onclick=""></button></li>
-                        <li><button type="button" class="" id="" onclick=""></button></li>
-                        <li><button type="button" class="" id="" onclick=""></button></li>
-                    </ul>
-                </div>
-
-                <!-- Another div to check if the answer right or wrong -->
-                <div id="answerCheck"></div>
-            </section>
+          <!-- first div has the main text, rules text, and start quiz button -->
+          <div class="begin" id="intro">
+            <h2 class="startText">Coding Quiz Challange</h2>
+            <p id="gameRules">
+              Game rules go here: (Lorem ipsum dolor sit, amet consectetur
+              adipisicing elit. Quam soluta, ex illo voluptates nihil recusandae
+              dolores officiis, facere ea voluptatibus animi ipsa illum libero
+              magni ullam doloribus a voluptas laborum.
+            </p>
+            <button id="startbtnId" class="startQuizBtn">Start Quiz</button>
+          </div>
 
 
-            <!-- Second section is for score info -->
-            <!-- this section has the end message, result,enter initails  and form check,and submit button-->
-            <section id="finalScore">
+          <!-- second div has three divs within: one has the question, one has the choices, the third for answers-> -->
+          <div id="quiz">
 
-                <h2 id="endMessage">All Done!</h2>
-                <div id="result"></div>
-
-                <!-- form to enter unser initials input. Validate in js file-->
-                <form action="">
-
-                    <!-- div has the label, type of input, and submit button for last page -->
-                    <div id="initials">
-                        <label for="users" id="name">Enter initials</label>
-
-                    <!-- there are different types on input, choose what you need -->
-                        <input type="text" id="contactInfo" placeholder="ex.ABC">
-                        <input type="type" id="userInfo" class="lastSubmitbtn" onclick="" value="Submit"/>
-                    
+            <!-- this div is for hte questions -->
+            <div id="question">Question goes here</div>
 
 
-                    </div>
-                </form>
-                
-            </section>
+            <!-- this div is for the choices buttons: create un ordered list for choices-->
+            <div id="choices">
+              <ul>
+                <!-- each list has a type, three classes, id, and onclick jQuery element -->
+                <li><button type="button" class="choice option-1 choice-button" id="1" onclick="checkAnswer('1')"></button></li>
+                <li><button type="button" class="choice option-2 choice-button" id="2" onclick="checkAnswer('2')"></button></li>
+                <li><button type="button" class="choice option-3 choice-button" id="3" onclick="checkAnswer('3')"></button></li>
+                <li><button type="button" class="choice option-4 choice-button" id="4" onclick="checkAnswer('4')"></button></li>
+              </ul>
+            </div>
 
 
+            <!-- Another div to check if the answer right or wrong -->
+            <div id="answerCheck"></div>
 
+          </div>
+        </section>
 
-        </main>
-        
+        <!-- Second section is for score info -->
+        <!-- this section has the end message, result,enter initails  and form check,and submit button-->
+        <section id="finalScore">
+          <h2 id="endMessage">All Done!</h2>
+          <div id="result"></div>
+
+          <!-- form to enter unser initials input. Validate in js file-->
+          <form action="">
+            <!-- div has the label, type of input, and submit button for last page -->
+            <div id="initials">
+              <label for="users" id="name">Enter initials</label>
+
+              <!-- there are different types on input, choose what you need -->
+              <input type="text" id="contactInfo" placeholder="ex.ABC" />
+              <input
+                type="type"
+                id="userInfo"
+                class="lastSubmitbtn"
+                onclick=""
+                value="Submit"
+              />
+            </div>
+          </form>
+        </section>
+      </main>
     </div>
-   
-</body>
+  </body>
 </html>
