@@ -66,14 +66,13 @@ var questions = [
 
 
 // start Quiz variable 
-var startQuizBtn = document.getElementById("startQuizBtn");
+var startQuizBtnEl = document.getElementById("startQuizBtn");
 
 
 
 // Timer variables 
 var timeLeft = 100;
 var timer = document.getElementById("timer");
-
 
 
 // Now Lets creation the functions =========================
@@ -100,11 +99,17 @@ render();
 };
 
 
+
+// display Questions
+var lastQuestion = questions.length -1;
+var currentQuestion = 0;
+
+
 // Function for displaying the question
 // may want to use Hide class element 
 // what do we use innterHTML for??
 function render() {
-    var hello = questions[runningQuestionIndex];
+    var hello = questions[currentQuestion];
     question.innerHTML = hello.question;
     choice1.innerHTML = hello.choice1;
     choice2.innerHTML = hello.choice2;
@@ -112,11 +117,49 @@ function render() {
     choice4.innerHTML = hello.choice4;
 };
 
-// function for answers 
-function checkAnswer (answer)
 
 
+var score = 100;
+
+// function to check the answers with if condition
+function checkAnswer (answer) {
+    
+    // correct vs wrong messages
+    if (hello.correct == answer) {
+        checkAnswer.textContent = "Correct!"
+    }
+    else {
+        checkAnswer.textContent = "Wrong!"
+        score -=10;
+    }
+
+    // In this if condition we say if user gone through all questions, display final score, resRender function
+    if (questions.length === currentQuestion +1) {
+        resRender();
+        return;
+    }
+     else {
+    currentQuestion++
+        render();
+     }
+};
+
+
+
+// displaying the score function
+// DOM element used to show the output on the browser 
+
+function resRender () {
+
+    if (timeLeft === 0 || questions.length -1) {
+        result.textContent = "Your final sore is " + score + ".";
+    }
+
+};
+
+
+// adding the event listeners to the buttons
 
 
 // Event Listener when user click the startQuiz Button. Add start the quiz function to
-startQuiz.addEventListener("click", )
+startQuizBtnEl.addEventListener("click", startQuiz);
