@@ -20,18 +20,18 @@ var scoreList = document.getElementById("scorelist");
 
 //The array of questions 
 var questions = [
-    { question: 'Commonly used data types DO NOT include:', 
-    choice1 : "1. strings",
-    choice2 : "2. booleans",
-    choice3 : "3. alerts",
-    choice4 : "4. numbers",
-    correct: "3"
+    { question: 'Inside which HTML element do we put the JavaScript?', 
+    choice1 : "1. js",
+    choice2 : "2. javascript",
+    choice3 : "3. scripting",
+    choice4 : "4. script",
+    correct: "4"
     },
-    { question: "Arrays in JavaScript can be used to store ________.", 
-    choice1 : "1. numbers and strings",
+    { question: "Commonly used data types DO NOT include:", 
+    choice1 : "1. strings",
     choice2 : "2. other arrays",
     choice3 : "3. booleans",
-    choice4 : "4. all of the above",
+    choice4 : "4. alerts",
     correct: "4"
     },
     { question: "The condition in an if / else statement is enclosed with ________.", 
@@ -41,14 +41,14 @@ var questions = [
     choice4 : "4. square brackets",
     correct: "2"
     },
-    { question: "String values must be enclosed within ______ when being assigned to variables.", 
-    choice1 : "1. commas",
-    choice2 : "2. curly brackets",
-    choice3 : "3. quotes",
-    choice4 : "4. parenthesis",
+    { question: "The first index of an array is ________.", 
+    choice1 : "1. first",
+    choice2 : "2. 1",
+    choice3 : "3. 0",
+    choice4 : "4. start",
     correct: "3"
     },
-    { question: "A very useful tool used during development and debugging for printing content to the debugger is:", 
+    { question: "String values must be enclosed within _____ when being assigned to variables.", 
     choice1 : "1. JavaScript",
     choice2 : "2. terminal/bash",
     choice3 : "3. for loops",
@@ -62,7 +62,35 @@ var questions = [
     choice4 : "4. console.log",
     correct: "4"
     },
-]  
+    { question: "String values must be enclosed within _____ when being assigned to variables.", 
+    choice1 : "1. commas",
+    choice2 : "2. quotes",
+    choice3 : "3. parenthesis",
+    choice4 : "4. square brackets",
+    correct: "2"
+    },
+    { question: "Arrays in JavaScript can be used to store _____.", 
+    choice1 : "1. booleans",
+    choice2 : "2. numbers",
+    choice3 : "3. Different elements",
+    choice4 : "4. strings",
+    correct: "3"
+    },
+    { question: "To see if two variables are equal in an if / else statement you would use ____.", 
+    choice1 : "1. if i = 5 then",
+    choice2 : "2. if(i == 5)",
+    choice3 : "3. if i = 5",
+    choice4 : "4. if i == 5 then",
+    correct: "4"
+    },
+    { question: "Which event occurs when the user clicks on an HTML element?", 
+    choice1 : "1. onmouseclick",
+    choice2 : "2. onmouseover",
+    choice3 : "3. onchange",
+    choice4 : "4. onclick",
+    correct: "4"
+    }]  
+
 
 
 
@@ -72,10 +100,10 @@ var startQuizBtnEl = document.querySelector(".startQuizBtn");
 
 
 // Timer variables 
-var timeLeft = 10;
+var timeLeft = 5;
 var startScore = 0;
 var timer = document.getElementById("timer");
-
+var timerId;
 
 // Now Lets creation the functions =========================
 
@@ -83,26 +111,38 @@ var timer = document.getElementById("timer");
 function startQuiz() {
 
 quiz.style.display = "block";
+startQuizBtnEl.style.display = "none";
+ timerId = setInterval(timeFunc, 1000);
+render();
+};
 
 
-    var timeInterval = setInterval(function() {
-    timer.textContent = "Timer:" + timeLeft + "s";
-    timeLeft-=1;
+//     var timeInterval = setInterval(function() {
+//     timer.textContent = "Timer:" + timeLeft + "s";
+//     timeLeft-=1;
 
-
-    // If condtion 
-    if(timeLeft === 0 || questions.length === currentQuestion + 1 ) {
-        resRender();
-        clearInterval(timeInterval);
-        timer.textContent = "Time:" + timeLeft + "s";
+//     // If condtion 
+//     if(timeLeft === 0 || questions.length === currentQuestion + 1 ) {
+//         resRender();
+//         clearInterval(timeInterval);
+//         timer.textContent = "Time:" + timeLeft + "s";
         
-    }
-}, 1000);
+//     }
+// }, 1000);
 
+
+function timeFunc () {
+    timeLeft --;
+    timer.textContent = timeLeft;
+    if (timeLeft === 0 ) {
+        endQuiz();
+
+    }
+
+}
 
 // this function we created below and we call it within this one
-    render();
-};
+
 
 
 
@@ -125,6 +165,14 @@ function render() {
 };
 
 
+// function to end the quiz and display the score
+function endQuiz () {
+    quiz.style.display = "none";
+    finalScore.style.display = "block";
+    
+        // to stop the timer when it hit zero
+        clearInterval(timerId);
+}
 
 var score = 100;
 
@@ -137,7 +185,7 @@ function checkAnswer(answer) {
     }
     else {
         answerCheck.textContent = "Wrong!"
-        score -=10;
+        score = score-10;
     }
 
     // In this if condition  we display the next question after choosing the answerwe say if user gone through all questions, display final score, resRender function
@@ -148,6 +196,10 @@ function checkAnswer(answer) {
      else {
     currentQuestion++;
         render();
+        if(currentQuestion === questions.length) {
+            endQuiz();
+        }
+
      };
 };
 
@@ -178,7 +230,7 @@ userInfo.addEventListener("click", function() {
     var contactInfo = document.getElementById("contactInfo").value;
 
     localStorage.setItem("contactInfo", JSON.stringify (contactInfo));
-    localStorage.setItem("timeLeft", JSON.stringify(timeLeft));
+    localStorage.setItem("score", JSON.stringify(score));
     
     loadScores();
     });

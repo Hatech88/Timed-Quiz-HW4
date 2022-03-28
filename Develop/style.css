@@ -149,3 +149,6 @@ ul {
     background-color: var(--second-color);
 } 
 
+#finalScore {
+    display: none;
+}
