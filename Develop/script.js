@@ -67,12 +67,12 @@ var questions = [
 
 
 // start Quiz variable 
-var startQuizBtnEl = document.getElementById("startQuizBtn");
+var startQuizBtnEl = document.querySelector(".startQuizBtn");
 
 
 
 // Timer variables 
-var timeLeft = 100;
+var timeLeft = 10;
 var startScore = 0;
 var timer = document.getElementById("timer");
 
@@ -81,6 +81,9 @@ var timer = document.getElementById("timer");
 
 // starting the quiz function
 function startQuiz() {
+
+quiz.style.display = "block";
+
 
     var timeInterval = setInterval(function() {
     timer.textContent = "Timer:" + timeLeft + "s";
@@ -111,6 +114,7 @@ var currentQuestion = 0;
 // Function for displaying the question
 // may want to use Hide class element 
 // what do we use innterHTML for??
+// using innterHTML and textContent to add content to an element/ tag
 function render() {
     var hello = questions[currentQuestion];
     question.innerHTML = hello.question;
@@ -136,7 +140,7 @@ function checkAnswer(answer) {
         score -=10;
     }
 
-    // In this if condition we say if user gone through all questions, display final score, resRender function
+    // In this if condition  we display the next question after choosing the answerwe say if user gone through all questions, display final score, resRender function
     if (questions.length === currentQuestion+1) {
         resRender();
         return;
@@ -152,13 +156,13 @@ function checkAnswer(answer) {
 // displaying the score function
 // DOM element used to show the output on the browser 
 
-function resRender () {
+// function resRender () {
 
-    if (timeLeft === 0 || questions.length -1) {
-        result.textContent = "Your final sore is " + score + ".";
-    }
+//     if (timeLeft === 0 || questions.length -1) {
+//         result.textContent = "Your final sore is " + score + ".";
+//     }
 
-};
+// };
 
 
 // adding the event listeners to the buttons
@@ -166,3 +170,15 @@ function resRender () {
 
 // Event Listener when user click the startQuiz Button. Add start the quiz function to
 startQuizBtnEl.addEventListener("click", startQuiz);
+
+
+
+//Capture Score and Initials 
+userInfo.addEventListener("click", function() {
+    var contactInfo = document.getElementById("contactInfo").value;
+
+    localStorage.setItem("contactInfo", JSON.stringify (contactInfo));
+    localStorage.setItem("timeLeft", JSON.stringify(timeLeft));
+    
+    loadScores();
+    });
