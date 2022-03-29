@@ -101,7 +101,6 @@ var startQuizBtnEl = document.querySelector(".startQuizBtn");
 
 // Timer variables 
 var timeLeft = 5;
-var startScore = 0;
 var timer = document.getElementById("timer");
 var timerId;
 
@@ -116,7 +115,7 @@ startQuizBtnEl.style.display = "none";
 render();
 };
 
-
+// This is the old time fuction I used initially 
 //     var timeInterval = setInterval(function() {
 //     timer.textContent = "Timer:" + timeLeft + "s";
 //     timeLeft-=1;
@@ -130,7 +129,8 @@ render();
 //     }
 // }, 1000);
 
-
+// Started a new simpler time function. It started by decrementing the timeLeft and display it on the screen. 
+// it has an if condition that call the endQuiz function when the timeLeft reaches zero 
 function timeFunc () {
     timeLeft --;
     timer.textContent = timeLeft;
@@ -225,12 +225,63 @@ startQuizBtnEl.addEventListener("click", startQuiz);
 
 
 
+
+
+    // High Score Section ============================
+    var clearBtn = document.getElementById("cleatBtn");
+    var backBtn = document.getElementById("goBackBtn");
+
+
+
 //Capture Score and Initials 
 userInfo.addEventListener("click", function() {
     var contactInfo = document.getElementById("contactInfo").value;
 
+
+    // localStorage can only store strings, so using JSON.stringify is a way to store JSON object in string form
+    // this will store the initials and scores in local storage
     localStorage.setItem("contactInfo", JSON.stringify (contactInfo));
     localStorage.setItem("score", JSON.stringify(score));
     
     loadScores();
     });
+
+
+
+// create an empty array and add to it the score ad the initials 
+    var finalScore = [];
+
+
+    // I will need to get all that data out from localStorage 
+    //then use javascript to display it on the page by manipulating the DOM
+var loadScores = function() {
+
+//  need to use getItem or JSON.parse when you retrive data from localStorage
+    var finalScore = localStorage.getItem("contactInfo, score");
+
+    // use for loop to create 
+    for ( var i =0; i < finalScore.length; i++) {
+        var finalScore = finalScore[i];
+        var finalList = document.createElement("li")
+        
+        finalList.textContent = finalScore;
+    }
+
+    finalScore.push(finalScore);
+
+    if (!finalScore) {
+        return alert("Invalid")
+    }
+
+
+};
+
+
+
+// localStroage.clear: The clear() method of the Storage interface clears all keys stored in a given Storage object
+var clearStorage = function() {
+    localStorage.clear();
+}
+
+// adding event listener to the clear button
+clearBtn.addEventListener("click", clearStorage);

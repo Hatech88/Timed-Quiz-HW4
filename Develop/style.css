@@ -152,3 +152,12 @@ ul {
 #finalScore {
     display: none;
 }
+
+
+#highScore{
+    display: none;
+}
+
+#clearBtn {
+    display: none;
+}
