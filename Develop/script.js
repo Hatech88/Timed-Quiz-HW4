@@ -100,7 +100,7 @@ var startQuizBtnEl = document.querySelector(".startQuizBtn");
 
 
 // Timer variables 
-var timeLeft = 5;
+var timeLeft = 100;
 var timer = document.getElementById("timer");
 var timerId;
 
@@ -188,7 +188,7 @@ function checkAnswer(answer) {
         score = score-10;
     }
 
-    // In this if condition  we display the next question after choosing the answerwe say if user gone through all questions, display final score, resRender function
+    // In this if condition  we display the next question after choosing the answer. we say if user gone through all questions, display final score, resRender function
     if (questions.length === currentQuestion+1) {
         resRender();
         return;
@@ -208,13 +208,13 @@ function checkAnswer(answer) {
 // displaying the score function
 // DOM element used to show the output on the browser 
 
-// function resRender () {
+function resRender () {
 
-//     if (timeLeft === 0 || questions.length -1) {
-//         result.textContent = "Your final sore is " + score + ".";
-//     }
+    if (timeLeft === 0 || questions.length -1) {
+        result.textContent = "Your final sore is " + score + ".";
+    }
 
-// };
+};
 
 
 // adding the event listeners to the buttons
