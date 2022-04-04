@@ -3,7 +3,8 @@
 
 This quiz is mainly focused on JavaScript knowledge. The main page will have the rules of the quiz and start quiz button. Once the user starts the quiz, a timer will start the count down. The user will have 100 seconds to go through 10 multiple choice questions. Every time a user selects the wrong answer, 10 points will be detected from the Score. For this quiz, every user will start with a score of a 100.
 
-![Alt text](/Assets/timed%20Quiz.jpg"Timed Quiz")
+
+![Alt text](/Assets/timedQuiz.jpg"Timed Quiz")
 
 
 URL:
